@@ -155,16 +155,13 @@ training_args = SFTConfig(
     warmup_ratio=0.05,
     num_train_epochs=1,
     learning_rate=2e-4,
-    logging_steps=10,
-    save_strategy="epoch",
-    eval_strategy="epoch",
+    logging_steps=100,
     output_dir=f"./{finetuned_model}",
-    bf16=True,
+    report_to="none",
     max_grad_norm=0.3,
     weight_decay=0.01,
-    max_length=16, 
+    max_length=16,
     packing=False,
-    report_to="none",
 )
 
 trainer = SFTTrainer(
@@ -173,7 +170,6 @@ trainer = SFTTrainer(
     eval_dataset=validation_dataset,
     args=training_args,
     peft_config=peft_config,
-    processing_class=tokenizer,
 )
 
 model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
