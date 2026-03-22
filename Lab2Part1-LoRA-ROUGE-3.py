@@ -91,7 +91,7 @@ for article, abstract in zip(validation_dataset["Articles"][:15], validation_dat
                                               return_tensors="pt").to("cuda")
     
     # TODO: perform model inference using the tokens in ``input_ids''
-    output = model.generate(input_ids, max_new_tokens=150)
+    output = model.generate(input_ids, max_new_tokens=200)
      
     # Remove input prompt from output
     prompt_length = input_ids.shape[1]
@@ -240,12 +240,5 @@ import torch
 
 print("Allocated:", torch.cuda.memory_allocated() / 1e9, "GB")
 print("Reserved:", torch.cuda.memory_reserved() / 1e9, "GB")
-
-
-# In[ ]:
-!pip install protobuf
-
-
-# In[ ]:
 
 
